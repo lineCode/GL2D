@@ -6338,7 +6338,7 @@ extern "C"
 	// This export cannot be in a namespace because compiler name mangling isn't consistent
 	// also, this must be 'C' callable.
 	//
-	HRESULT WINAPI
+	GL2D_API HRESULT WINAPI
 	GL2DCreateFactory(
 		_In_ GL2D_FACTORY_TYPE factoryType,
 		_In_ REFIID riid,
@@ -6347,14 +6347,14 @@ extern "C"
 		);
 
 
-	void WINAPI
+	GL2D_API void WINAPI
 	GL2DMakeRotateMatrix(
 		_In_ float angle,
 		_In_ GL2D_POINT_2F center,
 		_Out_ GL2D_MATRIX_3X2_F *matrix
 		);
 
-	void WINAPI
+	GL2D_API void WINAPI
 	GL2DMakeSkewMatrix(
 		_In_ float angleX,
 		_In_ float angleY,
@@ -6362,12 +6362,12 @@ extern "C"
 		_Out_ GL2D_MATRIX_3X2_F *matrix
 		);
 
-	bool WINAPI
+	GL2D_API bool WINAPI
 	GL2DIsMatrixInvertible(
 		_In_ const GL2D_MATRIX_3X2_F *matrix
 		);
 
-	bool WINAPI
+	GL2D_API bool WINAPI
 	GL2DInvertMatrix(
 		_Inout_ GL2D_MATRIX_3X2_F *matrix
 		);
@@ -6400,7 +6400,6 @@ GL2DCreateFactory(
 			NULL,
 			factory);
 }
-
 
 template<class Factory>
 COM_DECLSPEC_NOTHROW

@@ -3,16 +3,6 @@
 
 #include "GL2D.h"
 
-#if !defined( STATIC_LIB )
-#	if defined( GL2D_EXPORTS )
-#		define GL2D_API __declspec( dllexport )
-#	else
-#		define GL2D_API __declspec( dllimport )
-#	endif
-#else
-#	define GL2D_API
-#endif
-
 namespace GL2D
 {
 	template< typename Object, const GUID * Clsid >

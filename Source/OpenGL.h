@@ -1,6 +1,16 @@
 #ifndef ___OGL2D_OPENGL_H___
 #define ___OGL2D_OPENGL_H___
 
+#if !defined( STATIC_LIB )
+#	if defined( GL2D_EXPORTS )
+#		define GL2D_API __declspec( dllexport )
+#	else
+#		define GL2D_API __declspec( dllimport )
+#	endif
+#else
+#	define GL2D_API
+#endif
+
 #include <Windows.h>
 #include <gl/GL.h>
 #include <functional>

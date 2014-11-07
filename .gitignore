@@ -6,3 +6,5 @@
 /lib
 /Build/VC11/_generation
 /Build/VC11/ipch
+/Build/VC12/_generation
+/Build/VC12/ipch
