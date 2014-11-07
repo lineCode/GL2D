@@ -13,7 +13,7 @@ namespace GL2D
 	class CObject
 	{
 	public:
-		CObject( Ctor const & ctor, Dtor const & dtor )
+		GL2D_API CObject( Ctor const & ctor, Dtor const & dtor )
 			: m_name( GL_INVALID_INDEX )
 			, m_ctor( ctor )
 			, m_dtor( dtor )
@@ -22,7 +22,7 @@ namespace GL2D
 			assert( m_name != GL_INVALID_INDEX );
 		}
 
-		virtual ~CObject()
+		GL2D_API virtual ~CObject()
 		{
 			m_dtor( 1, &m_name );
 		}

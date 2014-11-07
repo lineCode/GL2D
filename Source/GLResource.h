@@ -5,26 +5,26 @@
 
 namespace GL2D
 {
-	template< typename Object, typename Interface >
+	template< typename Object, class Interface >
 	class CResource
-		: public CUnknown< Object, Interface >
+        : public CUnknown< Object, &__uuidof( Interface ) >
 	{
 	public:
-		CResource()
+		GL2D_API CResource()
 		{
 		}
 
-		virtual ~CResource()
+		GL2D_API virtual ~CResource()
 		{
 		}
 		
-		STDMETHOD_( void, GetFactory )( IGL2DFactory ** pFactory ) const
+		GL2D_API STDMETHOD_( void, GetFactory )( IGL2DFactory ** pFactory ) const
 		{
 		}
 
-		static CResource< Object, Interface > * CreateInstance()
+		static Interface * CreateInstance()
 		{
-			return new CResource< Object, Interface >;
+			return new CResource< Object, Interface >();
 		}
 	};
 }

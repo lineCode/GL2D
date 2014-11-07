@@ -6,6 +6,7 @@
 namespace GL2D
 {
 	class CComSolidColorBrush
+		: public IGL2DSolidColorBrush
 	{
 	};
 }

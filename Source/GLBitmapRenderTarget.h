@@ -6,10 +6,13 @@
 namespace GL2D
 {
 	class CComBitmapRenderTarget
+		: public IGL2DBitmapRenderTarget
 	{
 	public:
-		CComBitmapRenderTarget();
-		virtual ~CComBitmapRenderTarget();
+		GL2D_API CComBitmapRenderTarget();
+		GL2D_API virtual ~CComBitmapRenderTarget();
+
+		GL2D_API STDMETHOD( GetBitmap )( IGL2DBitmap **bitmap );
 	};
 }
 

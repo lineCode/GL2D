@@ -1,0 +1,8 @@
+*.opensdf
+*.suo
+*.sdf
+*.user
+/bin
+/lib
+/Build/VC11/_generation
+/Build/VC11/ipch

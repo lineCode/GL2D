@@ -6,16 +6,16 @@
 
 namespace GL2D
 {
-	template< typename Object, typename Interface >
+	template< typename Object, class Interface >
 	class CImage
 		: public CResource< Object, Interface >
 	{
 	public:
-		CImage()
+		GL2D_API CImage()
 		{
 		}
 
-		virtual ~CImage()
+		GL2D_API virtual ~CImage()
 		{
 		}
 	};

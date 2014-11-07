@@ -6,12 +6,13 @@
 namespace GL2D
 {
 	class CComHwndRenderTarget
+		: public IGL2DHwndRenderTarget
 	{
 	public:
-		CComHwndRenderTarget();
-		virtual ~CComHwndRenderTarget();
+		GL2D_API CComHwndRenderTarget();
+		GL2D_API virtual ~CComHwndRenderTarget();
 
-		STDMETHOD_( HWND, GetHwnd )()const;
+		GL2D_API STDMETHOD_( HWND, GetHwnd )()const;
 
 	private:
 		HWND m_hWnd;

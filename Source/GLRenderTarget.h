@@ -6,10 +6,11 @@
 namespace GL2D
 {
 	class CComRenderTarget
+        : public IGL2DRenderTarget
 	{
 	public:
-		CComRenderTarget();
-		virtual ~CComRenderTarget();
+		GL2D_API CComRenderTarget();
+		GL2D_API virtual ~CComRenderTarget();
 	};
 }
 

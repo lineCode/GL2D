@@ -6,6 +6,7 @@
 namespace GL2D
 {
 	class CComStrokeStyle
+		: public IGL2DStrokeStyle
 	{
 	};
 }

@@ -302,8 +302,8 @@ typedef enum GL2D_GL_TEXTURE_FILTER : unsigned int
 /**@name FBO */
 //@{
 
-static std::function< void ( int n, uint32_t* framebuffers  ) > glGenFramebuffers;
-static std::function< void ( int n, uint32_t const * framebuffers  ) > glDeleteFramebuffers;
+static std::function< void ( GLsizei n, GLuint* framebuffers  ) > glGenFramebuffers;
+static std::function< void ( GLsizei n, GLuint const * framebuffers  ) > glDeleteFramebuffers;
 static std::function< void ( uint32_t target, GL2D_GL_FRAMEBUFFER_MODE framebuffer  ) > glBindFramebuffer;
 static std::function< uint32_t ( uint32_t target  ) > glCheckFramebufferStatus;
 static std::function< void ( uint32_t target, uint32_t attachment, uint32_t texture, int level  ) > glFramebufferTexture;
@@ -330,8 +330,8 @@ static std::function < void ( uint32_t texture ) > glActiveTexture;
 //@{
 
 static std::function< void ( uint32_t target, uint32_t attachmentPoint, uint32_t renderbufferTarget, uint32_t renderbufferId ) > glFramebufferRenderbuffer;
-static std::function< void ( int n, uint32_t * ids ) > glGenRenderbuffers;
-static std::function< void ( int n, uint32_t const * ids ) > glDeleteRenderbuffers;
+static std::function< void ( GLsizei n, GLuint * ids ) > glGenRenderbuffers;
+static std::function< void ( GLsizei n, GLuint const * ids ) > glDeleteRenderbuffers;
 static std::function< void ( uint32_t target, uint32_t id ) > glBindRenderbuffer;
 static std::function< void ( uint32_t target, uint32_t internalFormat, int width, int height ) > glRenderbufferStorage;
 static std::function< void ( uint32_t target, int isamples, uint32_t internalFormat, int width, int height ) > glRenderbufferStorageMultisample;
@@ -342,8 +342,10 @@ static void (CALLBACK * glTexImage2DMultisample)( uint32_t target, int samples, 
 #endif
 static std::function< void ( uint32_t target, uint32_t param, int* value ) > glGetRenderbufferParameteriv;
 
-static void InitialiseOpenGL();
-
-HRESULT glGetLastError( char const * const name );
+namespace GL2D
+{
+	static void InitialiseOpenGL();
+	HRESULT glGetLastError( char const * const name );
+}
 
 #endif

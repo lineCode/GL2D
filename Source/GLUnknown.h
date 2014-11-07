@@ -5,45 +5,50 @@
 
 namespace GL2D
 {
-	template< typename Object, typename Interface >
+	template< typename Object, const GUID * Clsid >
 	class CUnknown
-		: public Interface
-		, public Object
+        : public Object
 	{
 	public:
-		CUnknown()
+		GL2D_API CUnknown()
 			: m_llRefCount( 0 )
 		{
 			AddRef();
 		}
 
-		virtual ~CUnknown()
+		GL2D_API virtual ~CUnknown()
 		{
 		}
 
-		virtual HRESULT STDMETHODCALLTYPE QueryInterface( const IID & riid, void ** ppv )
+		GL2D_API virtual HRESULT STDMETHODCALLTYPE QueryInterface( const IID & riid, void ** ppv )
 		{
-			if ( ( riid == IID_IUnknown ) || ( riid == __uuidof( Interface ) ) )
+			HRESULT hr = E_POINTER;
+
+			if ( ppv )
 			{
-				*ppv = this; 
-			}
-			else
-			{
-				*ppv = NULL; 
-				return E_NOINTERFACE; 
+				if ( ( riid == IID_IUnknown ) || ( riid == *Clsid ) )
+				{
+					*ppv = this;
+					AddRef(); 
+					hr = S_OK;
+				}
+				else
+				{
+					hr = E_NOINTERFACE;
+					*ppv = NULL; 
+				}
 			}
 
-			AddRef(); 
-			return S_OK;
+			return hr;
 		}
 
-		virtual ULONG STDMETHODCALLTYPE AddRef( void )
+		GL2D_API virtual ULONG STDMETHODCALLTYPE AddRef( void )
 		{
 			m_llRefCount++;
 			return m_llRefCount;
 		}
 
-		virtual ULONG STDMETHODCALLTYPE Release( void )
+		GL2D_API virtual ULONG STDMETHODCALLTYPE Release( void )
 		{
 			m_llRefCount--;
 

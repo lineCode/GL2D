@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GL2D", "GL2D.vcxproj", "{EC6D8C58-8987-42A3-81B1-F8C5304952C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Dynamic|Win32 = Debug Dynamic|Win32
+		Debug Static|Win32 = Debug Static|Win32
+		Release Dynamic|Win32 = Release Dynamic|Win32
+		Release Static|Win32 = Release Static|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC6D8C58-8987-42A3-81B1-F8C5304952C0}.Debug Dynamic|Win32.ActiveCfg = Debug Dynamic|Win32
+		{EC6D8C58-8987-42A3-81B1-F8C5304952C0}.Debug Dynamic|Win32.Build.0 = Debug Dynamic|Win32
+		{EC6D8C58-8987-42A3-81B1-F8C5304952C0}.Debug Static|Win32.ActiveCfg = Debug Static|Win32
+		{EC6D8C58-8987-42A3-81B1-F8C5304952C0}.Debug Static|Win32.Build.0 = Debug Static|Win32
+		{EC6D8C58-8987-42A3-81B1-F8C5304952C0}.Release Dynamic|Win32.ActiveCfg = Release Dynamic|Win32
+		{EC6D8C58-8987-42A3-81B1-F8C5304952C0}.Release Dynamic|Win32.Build.0 = Release Dynamic|Win32
+		{EC6D8C58-8987-42A3-81B1-F8C5304952C0}.Release Static|Win32.ActiveCfg = Release Static|Win32
+		{EC6D8C58-8987-42A3-81B1-F8C5304952C0}.Release Static|Win32.Build.0 = Release Static|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

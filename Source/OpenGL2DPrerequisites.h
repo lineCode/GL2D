@@ -3,9 +3,19 @@
 
 #include "GL2D.h"
 
+#if !defined( STATIC_LIB )
+#	if defined( GL2D_EXPORTS )
+#		define GL2D_API __declspec( dllexport )
+#	else
+#		define GL2D_API __declspec( dllimport )
+#	endif
+#else
+#	define GL2D_API
+#endif
+
 namespace GL2D
 {
-	template< typename Object, typename Interface >
+	template< typename Object, const GUID * Clsid >
 	class CUnknown;
 	template< typename Object, typename Interface >
 	class CResource;
@@ -43,10 +53,10 @@ namespace GL2D
 	typedef CResource< CComMesh, IGL2DMesh > CMesh;
 	typedef CResource< CComGeometry, IGL2DGeometry > CGeometry;
 	typedef CResource< CComDrawingStateBlock, IGL2DDrawingStateBlock > CDrawingStateBlock;
-	typedef CRenderTargetBase< CResource< CComRenderTarget, IGL2DRenderTarget >, IGL2DRenderTarget > CRenderTarget;
-	typedef CRenderTargetBase< CResource< CComHwndRenderTarget, IGL2DHwndRenderTarget >, IGL2DRenderTarget > CHwndRenderTarget;
-	typedef CRenderTargetBase< CResource< CComBitmapRenderTarget, IGL2DBitmapRenderTarget >, IGL2DRenderTarget > CBitmapRenderTarget;
 	typedef CResource< CComGradientStopCollection, IGL2DGradientStopCollection > CGradientStopCollection;
+	typedef CRenderTargetBase< CComRenderTarget, IGL2DRenderTarget > CRenderTarget;
+	typedef CRenderTargetBase< CComHwndRenderTarget, IGL2DHwndRenderTarget > CHwndRenderTarget;
+	typedef CRenderTargetBase< CComBitmapRenderTarget, IGL2DBitmapRenderTarget > CBitmapRenderTarget;
 
 }
 

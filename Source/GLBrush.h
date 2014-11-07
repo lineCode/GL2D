@@ -6,6 +6,7 @@
 namespace GL2D
 {
 	class CComBrush
+		: public IGL2DBrush
 	{
 	};
 }

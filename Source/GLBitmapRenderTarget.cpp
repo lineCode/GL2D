@@ -11,4 +11,9 @@ namespace GL2D
 	CComBitmapRenderTarget::~CComBitmapRenderTarget()
 	{
 	}
+
+	STDMETHODIMP CComBitmapRenderTarget::GetBitmap( IGL2DBitmap **bitmap )
+	{
+		return E_NOTIMPL;
+	}
 }

@@ -128,7 +128,7 @@ namespace GL2D
 
 		if ( renderTarget )
 		{
-			CRenderTarget::CreateInstance();
+			*renderTarget = CRenderTarget::CreateInstance();
 		}
 
 		return hr;
