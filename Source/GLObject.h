@@ -7,36 +7,76 @@
 
 namespace GL2D
 {
-	typedef std::function< void __stdcall ( GLsizei, GLuint * ) > Ctor;
-	typedef std::function< void __stdcall ( GLsizei, const GLuint * ) > Dtor;
-
+	//! Fonction de création d'identificateur OpenGL.
+	typedef std::function< void ( GLsizei, GLuint * ) > Ctor;
+	//! Fonction de destruction d'identificateur OpenGL.
+	typedef std::function< void ( GLsizei, const GLuint * ) > Dtor;
+	
+	/*!
+	\author 	Sylvain DOREMUS
+	\brief		Gère l'identificateur OpenGL d'un objet.
+	*/
 	class CObject
 	{
 	public:
-		GL2D_API CObject( Ctor const & ctor, Dtor const & dtor )
+		/** Constructeur
+		@param ctor
+			Fonction de création de l'identificateur.
+		 @param dtor
+			Fonction de destruction de l'identificateur.
+		*/
+		GL2D_API CObject()
 			: m_name( GL_INVALID_INDEX )
-			, m_ctor( ctor )
-			, m_dtor( dtor )
+			, m_ctor()
+			, m_dtor()
 		{
-			m_ctor( 1, &m_name );
-			assert( m_name != GL_INVALID_INDEX );
 		}
 
+		/** Destructeur
+		*/
 		GL2D_API virtual ~CObject()
 		{
-			m_dtor( 1, &m_name );
+			assert( m_name == GL_INVALID_INDEX );
 		}
 
-		inline GLuint GetName()
+		/** Crée l'identificateur OpenGL.
+		@return
+			\p true si tout s'est bien passé.
+		*/
+		GL2D_API STDMETHOD( Initialise )( Ctor ctor, Dtor dtor )
+		{
+			m_ctor = ctor;
+			m_dtor = dtor;
+			m_ctor( 1, &m_name );
+			assert( m_name != GL_INVALID_INDEX );
+			return m_name != GL_INVALID_INDEX ? S_OK : E_FAIL;
+		}
+
+		/** Détruit l'identificateur OpenGL.
+		*/
+		GL2D_API STDMETHOD_( void, Cleanup )()
+		{
+			m_dtor( 1, &m_name );
+			m_name = GL_INVALID_INDEX;
+		}
+
+		/** Récupère l'identificateur OpenGL.
+		@return
+			L'identificateur.
+		*/
+		GL2D_API STDMETHOD_( GLuint, GetName )()
 		{
 			return m_name;
 		}
 
 	private:
+		//! Fonction de création de l'identificateur.
 		Ctor m_ctor;
+		//! Fonction de destruction de l'identificateur.
 		Dtor m_dtor;
 
 	protected:
+		//! L'identificateur OpenGL.
 		GLuint m_name;
 	};
 }

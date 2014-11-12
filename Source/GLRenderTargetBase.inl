@@ -7,7 +7,7 @@ namespace GL2D
 	template< typename Object, typename Interface >
 	CRenderTargetBase< Object, Interface >::CRenderTargetBase()
 		: CResource< Object, Interface >()
-		, CObject( glGenFramebuffers, glDeleteFramebuffers )
+		, CObject()
 	{
 	}
 
@@ -333,7 +333,7 @@ namespace GL2D
 	template< typename Object, typename Interface >
 	STDMETHODIMP_( void ) CRenderTargetBase< Object, Interface >::BeginDraw()
 	{
-		glBindFramebuffer( m_name, GL2D_GL_FRAMEBUFFER_MODE_DRAW );
+		OpenGL::BindFramebuffer( m_name, GL2D_GL_FRAMEBUFFER_MODE_DRAW );
 		glDisable( GL_DEPTH_TEST );
 		glMatrixMode( GL_PROJECTION );
 		glLoadIdentity ();
@@ -344,7 +344,7 @@ namespace GL2D
 	template< typename Object, typename Interface >
 	STDMETHODIMP CRenderTargetBase< Object, Interface >::EndDraw( GL2D_TAG *tag1, GL2D_TAG *tag2 )
 	{
-		glBindFramebuffer( 0, GL2D_GL_FRAMEBUFFER_MODE_DRAW );
+		OpenGL::BindFramebuffer( 0, GL2D_GL_FRAMEBUFFER_MODE_DRAW );
 		return glGetLastError( "glBindFramebuffer" );
 	}
 

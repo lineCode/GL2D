@@ -22,9 +22,11 @@
     <ClCompile Include="..\..\Source\GL2D.cpp" />
     <ClCompile Include="..\..\Source\GLBitmap.cpp" />
     <ClCompile Include="..\..\Source\GLBitmapRenderTarget.cpp" />
+    <ClCompile Include="..\..\Source\GLContext.cpp" />
     <ClCompile Include="..\..\Source\GLFactory.cpp" />
     <ClCompile Include="..\..\Source\GLHwndRenderTarget.cpp" />
     <ClCompile Include="..\..\Source\GLRenderTarget.cpp" />
+    <ClCompile Include="..\..\Source\OpenGL2DPrerequisites.cpp" />
     <ClCompile Include="..\..\Source\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Dynamic|Win32'">Create</PrecompiledHeader>
@@ -38,6 +40,7 @@
     <ClInclude Include="..\..\Source\GLBitmap.h" />
     <ClInclude Include="..\..\Source\GLBitmapRenderTarget.h" />
     <ClInclude Include="..\..\Source\GLBrush.h" />
+    <ClInclude Include="..\..\Source\GLContext.h" />
     <ClInclude Include="..\..\Source\GLFactory.h" />
     <ClInclude Include="..\..\Source\GLHelper.h" />
     <ClInclude Include="..\..\Source\GLHwndRenderTarget.h" />

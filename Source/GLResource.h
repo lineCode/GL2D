@@ -7,7 +7,7 @@ namespace GL2D
 {
 	template< typename Object, class Interface >
 	class CResource
-        : public CUnknown< Object, &__uuidof( Interface ) >
+		: public CUnknown< Object, &__uuidof( Interface ) >
 	{
 	public:
 		GL2D_API CResource()

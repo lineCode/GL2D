@@ -48,6 +48,10 @@ namespace GL2D
 	typedef CRenderTargetBase< CComHwndRenderTarget, IGL2DHwndRenderTarget > CHwndRenderTarget;
 	typedef CRenderTargetBase< CComBitmapRenderTarget, IGL2DBitmapRenderTarget > CBitmapRenderTarget;
 
+	class CContext;
+
+	void InitialiseOpenGL();
+	HRESULT glGetLastError( char const * const name );
 }
 
 #endif

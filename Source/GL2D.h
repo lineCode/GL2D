@@ -82,264 +82,322 @@ extern "C++"
 	/** The measuring method used for text layout.
 	*/
 	typedef enum GL2D_MEASURING_MODE
-	{	GL2D_MEASURING_MODE_NATURAL		//!< Text is measured using glyph ideal metrics whose values are independent to the current display resolution.
-	,	GL2D_MEASURING_MODE_GDI_CLASSIC	//!< Text is measured using glyph display compatible metrics whose values tuned for the current display resolution.
-	,	GL2D_MEASURING_MODE_GDI_NATURAL	//!< Text is measured using the same glyph display metrics as text measured by GDI using a font created with CLEARTYPE_NATURAL_QUALITY.
+	{
+		GL2D_MEASURING_MODE_NATURAL,		//!< Text is measured using glyph ideal metrics whose values are independent to the current display resolution.
+		GL2D_MEASURING_MODE_GDI_CLASSIC,	//!< Text is measured using glyph display compatible metrics whose values tuned for the current display resolution.
+		GL2D_MEASURING_MODE_GDI_NATURAL,	//!< Text is measured using the same glyph display metrics as text measured by GDI using a font created with CLEARTYPE_NATURAL_QUALITY.
 	}	GL2D_MEASURING_MODE;
 
 	/** Qualifies how alpha is to be treated in a bitmap or render target containing alpha.
 	*/
-	typedef enum GL2D_ALPHA_MODE : uint32_t
-	{	GL2D_ALPHA_MODE_UNKNOWN = 0			//!< Alpha mode should be determined implicitly. Some target surfaces do not supply or imply this information in which case alpha must be specified.
-	,	GL2D_ALPHA_MODE_PREMULTIPLIED = 1	//!< Treat the alpha as premultipled.
-	,	GL2D_ALPHA_MODE_STRAIGHT = 2		//!< Opacity is in the 'A' component only.
-	,	GL2D_ALPHA_MODE_IGNORE = 3			//!< Ignore any alpha channel information.
+	typedef enum GL2D_ALPHA_MODE
+		: uint32_t
+	{
+		GL2D_ALPHA_MODE_UNKNOWN = 0,		//!< Alpha mode should be determined implicitly. Some target surfaces do not supply or imply this information in which case alpha must be specified.
+		GL2D_ALPHA_MODE_PREMULTIPLIED = 1,	//!< Treat the alpha as premultipled.
+		GL2D_ALPHA_MODE_STRAIGHT = 2,		//!< Opacity is in the 'A' component only.
+		GL2D_ALPHA_MODE_IGNORE = 3,			//!< Ignore any alpha channel information.
 	}	GL2D_ALPHA_MODE;
 
 	/** Defines interpolation modes supported by GL2D APIs and built-in effects
 	*/
 	typedef enum GL2D_INTERPOLATION_MODE_DEFINITION
-	{	GL2D_INTERPOLATION_MODE_DEFINITION_NEAREST_NEIGHBOR
-	,	GL2D_INTERPOLATION_MODE_DEFINITION_LINEAR
-	,	GL2D_INTERPOLATION_MODE_DEFINITION_CUBIC
-	,	GL2D_INTERPOLATION_MODE_DEFINITION_MULTI_SAMPLE_LINEAR
-	,	GL2D_INTERPOLATION_MODE_DEFINITION_ANISOTROPIC
-	,	GL2D_INTERPOLATION_MODE_DEFINITION_HIGH_QUALITY_CUBIC
-	,	GL2D_INTERPOLATION_MODE_DEFINITION_FANT
-	,	GL2D_INTERPOLATION_MODE_DEFINITION_MIPMAP_LINEAR
+	{
+		GL2D_INTERPOLATION_MODE_DEFINITION_NEAREST_NEIGHBOR,
+		GL2D_INTERPOLATION_MODE_DEFINITION_LINEAR,
+		GL2D_INTERPOLATION_MODE_DEFINITION_CUBIC,
+		GL2D_INTERPOLATION_MODE_DEFINITION_MULTI_SAMPLE_LINEAR,
+		GL2D_INTERPOLATION_MODE_DEFINITION_ANISOTROPIC,
+		GL2D_INTERPOLATION_MODE_DEFINITION_HIGH_QUALITY_CUBIC,
+		GL2D_INTERPOLATION_MODE_DEFINITION_FANT,
+		GL2D_INTERPOLATION_MODE_DEFINITION_MIPMAP_LINEAR,
 	}	GL2D_INTERPOLATION_MODE_DEFINITION;
 
 	/** This determines what gamma is used for interpolation/blending.
 	*/
-	typedef enum GL2D_GAMMA : uint32_t
-	{	GL2D_GAMMA_2_2 = 0	//!< Colors are manipulated in 2.2 gamma color space.
-	,	GL2D_GAMMA_1_0 = 1	//!< Colors are manipulated in 1.0 gamma color space.
+	typedef enum GL2D_GAMMA
+		: uint32_t
+	{
+		GL2D_GAMMA_2_2 = 0,	//!< Colors are manipulated in 2.2 gamma color space.
+		GL2D_GAMMA_1_0 = 1,	//!< Colors are manipulated in 1.0 gamma color space.
 	}	GL2D_GAMMA;
 
 
 	/** Specifies the contents of an opacity mask.
 	*/
-	typedef enum GL2D_OPACITY_MASK_CONTENT : uint32_t
-	{	GL2D_OPACITY_MASK_CONTENT_GRAPHICS = 0				//!< The mask contains geometries or bitmaps.
-	,	GL2D_OPACITY_MASK_CONTENT_TEXT_NATURAL = 1			//!< The mask contains text rendered using one of the natural text modes.
-	,	GL2D_OPACITY_MASK_CONTENT_TEXT_GDI_COMPATIBLE = 2	//!< The mask contains text rendered using one of the GDI compatible text modes.
+	typedef enum GL2D_OPACITY_MASK_CONTENT
+		: uint32_t
+	{
+		GL2D_OPACITY_MASK_CONTENT_GRAPHICS = 0,				//!< The mask contains geometries or bitmaps.
+		GL2D_OPACITY_MASK_CONTENT_TEXT_NATURAL = 1,			//!< The mask contains text rendered using one of the natural text modes.
+		GL2D_OPACITY_MASK_CONTENT_TEXT_GDI_COMPATIBLE = 2,	//!< The mask contains text rendered using one of the GDI compatible text modes.
 	}	GL2D_OPACITY_MASK_CONTENT;
 
 	/** Describes how to sample from a source outside its base tile.
 	*/
-	typedef enum GL2D_EXTEND_MODE : uint32_t
-	{	GL2D_EXTEND_MODE_CLAMP = 0	//!< Extend the edges of the source out by clamping sample points outside the source to the edges.
-	,	GL2D_EXTEND_MODE_WRAP = 1	//!< The base tile is drawn untransformed and the remainder are filled by repeating the base tile.
-	,	GL2D_EXTEND_MODE_MIRROR = 2	//!< The same as wrap, but alternate tiles are flipped  The base tile is drawn untransformed.
+	typedef enum GL2D_EXTEND_MODE
+		: uint32_t
+	{
+		GL2D_EXTEND_MODE_CLAMP = 0,		//!< Extend the edges of the source out by clamping sample points outside the source to the edges.
+		GL2D_EXTEND_MODE_WRAP = 1,		//!< The base tile is drawn untransformed and the remainder are filled by repeating the base tile.
+		GL2D_EXTEND_MODE_MIRROR = 2,	//!< The same as wrap, but alternate tiles are flipped  The base tile is drawn untransformed.
 	}	GL2D_EXTEND_MODE;
 
 	/** Enum which describes the manner in which we render edges of non-text primitives.
 	*/
-	typedef enum GL2D_ANTIALIAS_MODE : uint32_t
-	{	GL2D_ANTIALIAS_MODE_PER_PRIMITIVE = 0	//!< The edges of each primitive are antialiased sequentially.
-	,	GL2D_ANTIALIAS_MODE_ALIASED = 1			//!< Each pixel is rendered if its pixel center is contained by the geometry.
+	typedef enum GL2D_ANTIALIAS_MODE
+		: uint32_t
+	{
+		GL2D_ANTIALIAS_MODE_PER_PRIMITIVE = 0,	//!< The edges of each primitive are antialiased sequentially.
+		GL2D_ANTIALIAS_MODE_ALIASED = 1,		//!< Each pixel is rendered if its pixel center is contained by the geometry.
 	}	GL2D_ANTIALIAS_MODE;
 
 	/**
 	*/
-	typedef enum GL2D_TEXT_ANTIALIAS_MODE : uint32_t
-	{	GL2D_TEXT_ANTIALIAS_MODE_DEFAULT = 0	//!< Render text using the current system setting.
-	,	GL2D_TEXT_ANTIALIAS_MODE_CLEARTYPE = 1	//!< Render text using ClearType.
-	,	GL2D_TEXT_ANTIALIAS_MODE_GRAYSCALE = 2	//!< Render text using gray-scale.
-	,	GL2D_TEXT_ANTIALIAS_MODE_ALIASED = 3	//!< Render text aliased.
+	typedef enum GL2D_TEXT_ANTIALIAS_MODE
+		: uint32_t
+	{
+		GL2D_TEXT_ANTIALIAS_MODE_DEFAULT = 0,	//!< Render text using the current system setting.
+		GL2D_TEXT_ANTIALIAS_MODE_CLEARTYPE = 1,	//!< Render text using ClearType.
+		GL2D_TEXT_ANTIALIAS_MODE_GRAYSCALE = 2,	//!< Render text using gray-scale.
+		GL2D_TEXT_ANTIALIAS_MODE_ALIASED = 3,	//!< Render text aliased.
 	}	GL2D_TEXT_ANTIALIAS_MODE;
 
 	/**
 	*/
-	typedef enum GL2D_BITMAP_INTERPOLATION_MODE : uint32_t
-	{	GL2D_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR = GL2D_INTERPOLATION_MODE_DEFINITION_NEAREST_NEIGHBOR	//!< Nearest Neighbor filtering. Also known as nearest pixel or nearest point sampling.
-	,	GL2D_BITMAP_INTERPOLATION_MODE_LINEAR = GL2D_INTERPOLATION_MODE_DEFINITION_LINEAR						//!< Linear filtering.
+	typedef enum GL2D_BITMAP_INTERPOLATION_MODE
+		: uint32_t
+	{
+		GL2D_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR = GL2D_INTERPOLATION_MODE_DEFINITION_NEAREST_NEIGHBOR,	//!< Nearest Neighbor filtering. Also known as nearest pixel or nearest point sampling.
+		GL2D_BITMAP_INTERPOLATION_MODE_LINEAR = GL2D_INTERPOLATION_MODE_DEFINITION_LINEAR,						//!< Linear filtering.
 	}	GL2D_BITMAP_INTERPOLATION_MODE;
 
 	/** Modifications made to the draw text call that influence how the text is rendered.
 	*/
-	typedef enum GL2D_DRAW_TEXT_OPTIONS : uint32_t
-	{	GL2D_DRAW_TEXT_OPTIONS_NONE = 0x00000000
-	,	GL2D_DRAW_TEXT_OPTIONS_NO_SNAP = 0x00000001				//!< Do not snap the baseline of the text vertically.
-	,	GL2D_DRAW_TEXT_OPTIONS_CLIP = 0x00000002				//!< Clip the text to the content bounds.
-	,	GL2D_DRAW_TEXT_OPTIONS_ENABLE_COLOR_FONT = 0x00000004	//!< Render color versions of glyphs if defined by the font.
+	typedef enum GL2D_DRAW_TEXT_OPTIONS
+		: uint32_t
+	{
+		GL2D_DRAW_TEXT_OPTIONS_NONE = 0x00000000,
+		GL2D_DRAW_TEXT_OPTIONS_NO_SNAP = 0x00000001,			//!< Do not snap the baseline of the text vertically.
+		GL2D_DRAW_TEXT_OPTIONS_CLIP = 0x00000002,				//!< Clip the text to the content bounds.
+		GL2D_DRAW_TEXT_OPTIONS_ENABLE_COLOR_FONT = 0x00000004,	//!< Render color versions of glyphs if defined by the font.
 	}	GL2D_DRAW_TEXT_OPTIONS;
 
 	/** Differentiates which of the two possible arcs could match the given arc parameters.
 	*/
-	typedef enum GL2D_ARC_SIZE : uint32_t
-	{	GL2D_ARC_SIZE_SMALL = 0
-	,	GL2D_ARC_SIZE_LARGE = 1
+	typedef enum GL2D_ARC_SIZE
+		: uint32_t
+	{
+		GL2D_ARC_SIZE_SMALL = 0,
+		GL2D_ARC_SIZE_LARGE = 1,
 	}	GL2D_ARC_SIZE;
 
 	/** Enum which describes the drawing of the ends of a line.
 	*/
-	typedef enum GL2D_CAP_STYLE : uint32_t
-	{	GL2D_CAP_STYLE_FLAT = 0		//!< Flat line cap.
-	,	GL2D_CAP_STYLE_SQUARE = 1	//!< Square line cap.
-	,	GL2D_CAP_STYLE_ROUND = 2	//!< Round line cap.
-	,	GL2D_CAP_STYLE_TRIANGLE = 3	//!< Triangle line cap.
+	typedef enum GL2D_CAP_STYLE
+		: uint32_t
+	{
+		GL2D_CAP_STYLE_FLAT = 0,		//!< Flat line cap.
+		GL2D_CAP_STYLE_SQUARE = 1,		//!< Square line cap.
+		GL2D_CAP_STYLE_ROUND = 2,		//!< Round line cap.
+		GL2D_CAP_STYLE_TRIANGLE = 3,	//!< Triangle line cap.
 	}	GL2D_CAP_STYLE;
 
 	/**
 	*/
-	typedef enum GL2D_DASH_STYLE : uint32_t
-	{	GL2D_DASH_STYLE_SOLID = 0
-	,	GL2D_DASH_STYLE_DASH = 1
-	,	GL2D_DASH_STYLE_DOT = 2
-	,	GL2D_DASH_STYLE_DASH_DOT = 3
-	,	GL2D_DASH_STYLE_DASH_DOT_DOT = 4
-	,	GL2D_DASH_STYLE_CUSTOM = 5
+	typedef enum GL2D_DASH_STYLE
+		: uint32_t
+	{
+		GL2D_DASH_STYLE_SOLID = 0,
+		GL2D_DASH_STYLE_DASH = 1,
+		GL2D_DASH_STYLE_DOT = 2,
+		GL2D_DASH_STYLE_DASH_DOT = 3,
+		GL2D_DASH_STYLE_DASH_DOT_DOT = 4,
+		GL2D_DASH_STYLE_CUSTOM = 5,
 	}	GL2D_DASH_STYLE;
 
 	/** Enum which describes the drawing of the corners on the line.
 	*/
-	typedef enum GL2D_LINE_JOIN : uint32_t
-	{	GL2D_LINE_JOIN_MITER = 0			//!< Miter join.
-	,	GL2D_LINE_JOIN_BEVEL = 1			//!< Bevel join.
-	,	GL2D_LINE_JOIN_ROUND = 2			//!< Round join.
-	,	GL2D_LINE_JOIN_MITER_OR_BEVEL = 3	//!< Miter/Bevel join.
+	typedef enum GL2D_LINE_JOIN
+		: uint32_t
+	{
+		GL2D_LINE_JOIN_MITER = 0,			//!< Miter join.
+		GL2D_LINE_JOIN_BEVEL = 1,			//!< Bevel join.
+		GL2D_LINE_JOIN_ROUND = 2,			//!< Round join.
+		GL2D_LINE_JOIN_MITER_OR_BEVEL = 3,	//!< Miter/Bevel join.
 	}	GL2D_LINE_JOIN;
 
 	/** This enumeration describes the type of combine operation to be performed.
 	*/
-	typedef enum GL2D_COMBINE_MODE : uint32_t
-	{	GL2D_COMBINE_MODE_UNION = 0		//!< Produce a geometry representing the set of points contained in either the first or the second geometry.
-	,	GL2D_COMBINE_MODE_INTERSECT = 1	//!< Produce a geometry representing the set of points common to the first and the second geometries.
-	,	GL2D_COMBINE_MODE_XOR = 2		//!< Produce a geometry representing the set of points contained in the first geometry or the second geometry, but not both.
-	,	GL2D_COMBINE_MODE_EXCLUDE = 3	//!< Produce a geometry representing the set of points contained in the first geometry but not the second geometry.
+	typedef enum GL2D_COMBINE_MODE
+		: uint32_t
+	{
+		GL2D_COMBINE_MODE_UNION = 0,		//!< Produce a geometry representing the set of points contained in either the first or the second geometry.
+		GL2D_COMBINE_MODE_INTERSECT = 1,	//!< Produce a geometry representing the set of points common to the first and the second geometries.
+		GL2D_COMBINE_MODE_XOR = 2,		//!< Produce a geometry representing the set of points contained in the first geometry or the second geometry, but not both.
+		GL2D_COMBINE_MODE_EXCLUDE = 3,	//!< Produce a geometry representing the set of points contained in the first geometry but not the second geometry.
 	}	GL2D_COMBINE_MODE;
 	
 	/**
 	*/
-	typedef enum GL2D_GEOMETRY_RELATION : uint32_t
-	{	GL2D_GEOMETRY_RELATION_UNKNOWN = 0		//!< The relation between the geometries couldn't be determined. This value is never returned by any D2D method.
-	,	GL2D_GEOMETRY_RELATION_DISJOINT = 1		//!< The two geometries do not intersect at all.
-	,	GL2D_GEOMETRY_RELATION_IS_CONTAINED = 2	//!< The passed in geometry is entirely contained by the object.
-	,	GL2D_GEOMETRY_RELATION_CONTAINS = 3		//!< The object entirely contains the passed in geometry.
-	,	GL2D_GEOMETRY_RELATION_OVERLAP = 4		//!< The two geometries overlap but neither completely contains the other.
+	typedef enum GL2D_GEOMETRY_RELATION
+		: uint32_t
+	{
+		GL2D_GEOMETRY_RELATION_UNKNOWN = 0,			//!< The relation between the geometries couldn't be determined. This value is never returned by any D2D method.
+		GL2D_GEOMETRY_RELATION_DISJOINT = 1,		//!< The two geometries do not intersect at all.
+		GL2D_GEOMETRY_RELATION_IS_CONTAINED = 2,	//!< The passed in geometry is entirely contained by the object.
+		GL2D_GEOMETRY_RELATION_CONTAINS = 3,		//!< The object entirely contains the passed in geometry.
+		GL2D_GEOMETRY_RELATION_OVERLAP = 4,		//!< The two geometries overlap but neither completely contains the other.
 	}	GL2D_GEOMETRY_RELATION;
 
 	/** Specifies how simple the output of a simplified geometry sink should be.
 	*/
-	typedef enum GL2D_GEOMETRY_SIMPLIFICATION_OPTION : uint32_t
-	{	GL2D_GEOMETRY_SIMPLIFICATION_OPTION_CUBICS_AND_LINES = 0
-	,	GL2D_GEOMETRY_SIMPLIFICATION_OPTION_LINES = 1
+	typedef enum GL2D_GEOMETRY_SIMPLIFICATION_OPTION
+		: uint32_t
+	{
+		GL2D_GEOMETRY_SIMPLIFICATION_OPTION_CUBICS_AND_LINES = 0,
+		GL2D_GEOMETRY_SIMPLIFICATION_OPTION_LINES = 1,
 	}	GL2D_GEOMETRY_SIMPLIFICATION_OPTION;
 	
 	/**
 	*/
-	typedef enum GL2D_FIGURE_BEGIN : uint32_t
-	{	GL2D_FIGURE_BEGIN_FILLED = 0
-	,	GL2D_FIGURE_BEGIN_HOLLOW = 1
+	typedef enum GL2D_FIGURE_BEGIN
+		: uint32_t
+	{
+		GL2D_FIGURE_BEGIN_FILLED = 0,
+		GL2D_FIGURE_BEGIN_HOLLOW = 1,
 	}	GL2D_FIGURE_BEGIN;
 
 
 	/** Indicates whether the figure is open or closed on its end point.
 	*/
-	typedef enum GL2D_FIGURE_END : uint32_t
-	{	GL2D_FIGURE_END_OPEN = 0
-	,	GL2D_FIGURE_END_CLOSED = 1
+	typedef enum GL2D_FIGURE_END
+		: uint32_t
+	{
+		GL2D_FIGURE_END_OPEN = 0,
+		GL2D_FIGURE_END_CLOSED = 1,
 	}	GL2D_FIGURE_END;
 	
 	/**
 	*/
-	typedef enum GL2D_WINDOW_STATE : uint32_t
-	{	GL2D_WINDOW_STATE_NONE      = 0x0000000
-	,	GL2D_WINDOW_STATE_OCCLUDED  = 0x0000001
+	typedef enum GL2D_WINDOW_STATE
+		: uint32_t
+	{
+		GL2D_WINDOW_STATE_NONE      = 0x0000000,
+		GL2D_WINDOW_STATE_OCCLUDED  = 0x0000001,
 	}	GL2D_WINDOW_STATE;
 	
 	/**
 	*/
-	typedef enum GL2D_COMPATIBLE_RENDER_TARGET_OPTIONS : uint32_t
-	{	GL2D_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE = 0x00000000
-	,	GL2D_COMPATIBLE_RENDER_TARGET_OPTIONS_GDI_COMPATIBLE = 0x00000001	//!< The compatible render target will allow a call to GetDC on the GL2DGdiInteropRenderTarget interface. This can be specified even if the parent render target is not GDI compatible.
+	typedef enum GL2D_COMPATIBLE_RENDER_TARGET_OPTIONS
+		: uint32_t
+	{
+		GL2D_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE = 0x00000000,
+		GL2D_COMPATIBLE_RENDER_TARGET_OPTIONS_GDI_COMPATIBLE = 0x00000001,	//!< The compatible render target will allow a call to GetDC on the GL2DGdiInteropRenderTarget interface. This can be specified even if the parent render target is not GDI compatible.
 	}	GL2D_COMPATIBLE_RENDER_TARGET_OPTIONS;
 
 	/** Indicates whether the given segment should be stroked, or, if the join between this segment and the previous one should be smooth.
 	*/
-	typedef enum GL2D_PATH_SEGMENT : uint32_t
-	{	GL2D_PATH_SEGMENT_NONE = 0x00000000
-	,	GL2D_PATH_SEGMENT_FORCE_UNSTROKED = 0x00000001
-	,	GL2D_PATH_SEGMENT_FORCE_ROUND_LINE_JOIN = 0x00000002
+	typedef enum GL2D_PATH_SEGMENT
+		: uint32_t
+	{
+		GL2D_PATH_SEGMENT_NONE = 0x00000000,
+		GL2D_PATH_SEGMENT_FORCE_UNSTROKED = 0x00000001,
+		GL2D_PATH_SEGMENT_FORCE_ROUND_LINE_JOIN = 0x00000002,
 	}	GL2D_PATH_SEGMENT;
 
 	/**
 	*/
 	typedef enum GL2D_SWEEP_DIRECTION
-	{	GL2D_SWEEP_DIRECTION_COUNTER_CLOCKWISE = 0
-	,	GL2D_SWEEP_DIRECTION_CLOCKWISE = 1
+	{
+		GL2D_SWEEP_DIRECTION_COUNTER_CLOCKWISE = 0,
+		GL2D_SWEEP_DIRECTION_CLOCKWISE = 1,
 	}	GL2D_SWEEP_DIRECTION;
 
 	/**
 	*/
 	typedef enum GL2D_FILL_MODE
-	{	GL2D_FILL_MODE_ALTERNATE = 0
-	,	GL2D_FILL_MODE_WINDING = 1
+	{
+		GL2D_FILL_MODE_ALTERNATE = 0,
+		GL2D_FILL_MODE_WINDING = 1,
 	}	GL2D_FILL_MODE;
 
 	/** Specified options that can be applied when a layer resource is applied to create a layer.
 	*/
-	typedef enum GL2D_LAYER_OPTIONS : uint32_t
-	{	GL2D_LAYER_OPTIONS_NONE = 0x00000000
-	,	GL2D_LAYER_OPTIONS_INITIALIZE_FOR_CLEARTYPE = 0x00000001
+	typedef enum GL2D_LAYER_OPTIONS
+		: uint32_t
+	{
+		GL2D_LAYER_OPTIONS_NONE = 0x00000000,
+		GL2D_LAYER_OPTIONS_INITIALIZE_FOR_CLEARTYPE = 0x00000001,
 	}	GL2D_LAYER_OPTIONS;
 
 	/**
 	*/
-	typedef enum GL2D_RENDER_TARGET_TYPE : uint32_t
-	{	GL2D_RENDER_TARGET_TYPE_DEFAULT = 0		//!< D2D is free to choose the render target type for the caller.
-	,	GL2D_RENDER_TARGET_TYPE_SOFTWARE = 1	//!< The render target will render using the CPU.
-	,	GL2D_RENDER_TARGET_TYPE_HARDWARE = 2	//!< The render target will render using the GPU.
+	typedef enum GL2D_RENDER_TARGET_TYPE
+		: uint32_t
+	{
+		GL2D_RENDER_TARGET_TYPE_DEFAULT = 0,	//!< D2D is free to choose the render target type for the caller.
+		GL2D_RENDER_TARGET_TYPE_SOFTWARE = 1,	//!< The render target will render using the CPU.
+		GL2D_RENDER_TARGET_TYPE_HARDWARE = 2,	//!< The render target will render using the GPU.
 	}	GL2D_RENDER_TARGET_TYPE;
 	
 	/**
 	*/
-	typedef enum GL2D_FEATURE_LEVEL : uint32_t
-	{	GL2D_FEATURE_LEVEL_DEFAULT = 0	//!< The caller does not require a particular underlying D3D device level.
-	,	GL2D_FEATURE_LEVEL_GL2 = 1		//!< The D3D device level is OpenGl2.x compatible.
-	,	GL2D_FEATURE_LEVEL_GL3 = 2		//!< The D3D device level is OpenGl3.x compatible.
-	,	GL2D_FEATURE_LEVEL_GL4 = 3		//!< The D3D device level is OpenGl4.x compatible.
+	typedef enum GL2D_FEATURE_LEVEL
+		: uint32_t
+	{
+		GL2D_FEATURE_LEVEL_DEFAULT = 0,	//!< The caller does not require a particular underlying D3D device level.
+		GL2D_FEATURE_LEVEL_GL2 = 1,		//!< The D3D device level is OpenGl2.x compatible.
+		GL2D_FEATURE_LEVEL_GL3 = 2,		//!< The D3D device level is OpenGl3.x compatible.
+		GL2D_FEATURE_LEVEL_GL4 = 3,		//!< The D3D device level is OpenGl4.x compatible.
 	}	GL2D_FEATURE_LEVEL;
 	
 	/**
 	*/
-	typedef enum GL2D_RENDER_TARGET_USAGE : uint32_t
-	{	GL2D_RENDER_TARGET_USAGE_NONE = 0x00000000
-	,	GL2D_RENDER_TARGET_USAGE_FORCE_BITMAP_REMOTING = 0x00000001	//!< Rendering will occur locally, if a terminal-services session is established, the bitmap updates will be sent to the terminal services client.
-	,	GL2D_RENDER_TARGET_USAGE_GDI_COMPATIBLE = 0x00000002		//!< The render target will allow a call to GetDC on the IGL2DGdiInteropRenderTarget interface. Rendering will also occur locally.
+	typedef enum GL2D_RENDER_TARGET_USAGE
+		: uint32_t
+	{
+		GL2D_RENDER_TARGET_USAGE_NONE = 0x00000000,
+		GL2D_RENDER_TARGET_USAGE_FORCE_BITMAP_REMOTING = 0x00000001,	//!< Rendering will occur locally, if a terminal-services session is established, the bitmap updates will be sent to the terminal services client.
+		GL2D_RENDER_TARGET_USAGE_GDI_COMPATIBLE = 0x00000002,			//!< The render target will allow a call to GetDC on the IGL2DGdiInteropRenderTarget interface. Rendering will also occur locally.
 	}	GL2D_RENDER_TARGET_USAGE;
 
 	/** Describes how present should behave.
 	*/
-	typedef enum GL2D_PRESENT_OPTIONS : uint32_t
-	{	GL2D_PRESENT_OPTIONS_NONE = 0x00000000
-	,	GL2D_PRESENT_OPTIONS_RETAIN_CONTENTS = 0x00000001	//!< Keep the target contents intact through present.
-	,	GL2D_PRESENT_OPTIONS_IMMEDIATELY = 0x00000002		//!< Do not wait for display refresh to commit changes to display.
+	typedef enum GL2D_PRESENT_OPTIONS
+		: uint32_t
+	{
+		GL2D_PRESENT_OPTIONS_NONE = 0x00000000,
+		GL2D_PRESENT_OPTIONS_RETAIN_CONTENTS = 0x00000001,	//!< Keep the target contents intact through present.
+		GL2D_PRESENT_OPTIONS_IMMEDIATELY = 0x00000002,		//!< Do not wait for display refresh to commit changes to display.
 	}	GL2D_PRESENT_OPTIONS;
 
 	/**
 	*/
-	typedef enum GL2D_DC_INITIALIZE_MODE : uint32_t
-	{	GL2D_DC_INITIALIZE_MODE_COPY = 0	//!< The contents of the D2D render target will be copied to the DC.
-	,	GL2D_DC_INITIALIZE_MODE_CLEAR = 1	//!< The contents of the DC will be cleared.
+	typedef enum GL2D_DC_INITIALIZE_MODE
+		: uint32_t
+	{
+		GL2D_DC_INITIALIZE_MODE_COPY = 0,	//!< The contents of the D2D render target will be copied to the DC.
+		GL2D_DC_INITIALIZE_MODE_CLEAR = 1,	//!< The contents of the DC will be cleared.
 	}	GL2D_DC_INITIALIZE_MODE;
 
 
 	/** Indicates the debug level to be output by the debug layer.
 	*/
 	typedef enum GL2D_DEBUG_LEVEL
-	{	GL2D_DEBUG_LEVEL_NONE = 0
-	,	GL2D_DEBUG_LEVEL_ERROR = 1
-	,	GL2D_DEBUG_LEVEL_WARNING = 2
-	,	GL2D_DEBUG_LEVEL_INFORMATION = 3
+	{
+		GL2D_DEBUG_LEVEL_NONE = 0,
+		GL2D_DEBUG_LEVEL_ERROR = 1,
+		GL2D_DEBUG_LEVEL_WARNING = 2,
+		GL2D_DEBUG_LEVEL_INFORMATION = 3,
 	}	GL2D_DEBUG_LEVEL;
 
 	/** Specifies the threading model of the created factory and all of its derived resources.
 	*/
 	typedef enum GL2D_FACTORY_TYPE
-	{	GL2D_FACTORY_TYPE_SINGLE_THREADED = 0	//!< The resulting factory and derived resources may only be invoked serially. Reference counts on resources are interlocked, however, resource and render target state is not protected from multi-threaded access.
-	,	GL2D_FACTORY_TYPE_MULTI_THREADED = 1	//!< The resulting factory may be invoked from multiple threads. Returned resources use interlocked reference counting and their state is protected.
+	{
+		GL2D_FACTORY_TYPE_SINGLE_THREADED = 0,	//!< The resulting factory and derived resources may only be invoked serially. Reference counts on resources are interlocked, however, resource and render target state is not protected from multi-threaded access.
+			GL2D_FACTORY_TYPE_MULTI_THREADED = 1,	//!< The resulting factory may be invoked from multiple threads. Returned resources use interlocked reference counting and their state is protected.
 	}	GL2D_FACTORY_TYPE;
 
 	IMPL_ENUM_FLAG_OPERATORS( GL2D_LAYER_OPTIONS );

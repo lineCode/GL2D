@@ -6,7 +6,7 @@
 namespace GL2D
 {
 	CComBitmap::CComBitmap()
-		: CObject( &glGenTextures, &glDeleteTextures )
+		: CObject()
 	{
 	}
 

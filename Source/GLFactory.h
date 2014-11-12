@@ -2,6 +2,7 @@
 #define ___OGL2D_FACTORY_H___
 
 #include "GLUnknown.h"
+#include "GLContext.h"
 
 namespace GL2D
 {
@@ -26,6 +27,9 @@ namespace GL2D
 		GL2D_API STDMETHOD( CreateHwndRenderTarget )( const GL2D_RENDER_TARGET_PROPERTIES *renderTargetProperties, const GL2D_HWND_RENDER_TARGET_PROPERTIES *hwndRenderTargetProperties, IGL2DHwndRenderTarget **hwndRenderTarget );
 		GL2D_API STDMETHOD( CreateDxgiSurfaceRenderTarget )( IDXGISurface *dxgiSurface, const GL2D_RENDER_TARGET_PROPERTIES *renderTargetProperties, IGL2DRenderTarget **renderTarget );
 		GL2D_API STDMETHOD( CreateDCRenderTarget )( const GL2D_RENDER_TARGET_PROPERTIES *renderTargetProperties, IGL2DDCRenderTarget **dcRenderTarget );
+
+	private:
+		Context m_context;
 	};
 }
 

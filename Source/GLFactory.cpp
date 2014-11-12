@@ -3,6 +3,7 @@
 #include "GLFactory.h"
 #include "GLResource.h"
 #include "GLRenderTarget.h"
+#include "GLHwndRenderTarget.h"
 
 namespace GL2D
 {
@@ -140,6 +141,13 @@ namespace GL2D
 
 		if ( hwndRenderTarget )
 		{
+			CHwndRenderTarget * rt = reinterpret_cast< CHwndRenderTarget * >( CHwndRenderTarget::CreateInstance() );
+			hr = rt->Create( *renderTargetProperties, *hwndRenderTargetProperties );
+
+			if ( hr == S_OK )
+			{
+				hr = rt->Initialise( OpenGL::GenFramebuffers, OpenGL::DeleteFramebuffers );
+			}
 		}
 
 		return hr;

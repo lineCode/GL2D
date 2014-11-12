@@ -146,82 +146,42 @@ typedef enum GL2D_GL_FORMAT : unsigned int
 ,	GL2D_GL_FORMAT_DEPTH_STENCIL	= 0x84F9
 }	GL2D_GL_FORMAT;
 
-typedef enum GL2D_GL_INTERNAL : unsigned int
-{	GL2D_GL_INTERNAL_1							= 1
-,	GL2D_GL_INTERNAL_2							= 2
-,	GL2D_GL_INTERNAL_3							= 3
-,	GL2D_GL_INTERNAL_4							= 4
-,	GL2D_GL_INTERNAL_LUMINANCE					= 0x1909
-,	GL2D_GL_INTERNAL_R3_G3_B2					= 0x2A10
-,	GL2D_GL_INTERNAL_ALPHA4						= 0x803B
-,	GL2D_GL_INTERNAL_ALPHA8						= 0x803C
-,	GL2D_GL_INTERNAL_ALPHA12					= 0x803D
-,	GL2D_GL_INTERNAL_ALPHA16					= 0x803E
-,	GL2D_GL_INTERNAL_COMPRESSED_ALPHA			= 0x84E9
-,	GL2D_GL_INTERNAL_COMPRESSED_LUMINANCE		= 0x84EA
-,	GL2D_GL_INTERNAL_COMPRESSED_LUMINANCE_ALPHA	= 0x84EB
-,	GL2D_GL_INTERNAL_COMPRESSED_INTENSITY		= 0x84EC
-,	GL2D_GL_INTERNAL_COMPRESSED_RGB				= 0x84ED
-,	GL2D_GL_INTERNAL_COMPRESSED_RGBA			= 0x84EE
-,	GL2D_GL_INTERNAL_LUMINANCE4					= 0x803F
-,	GL2D_GL_INTERNAL_LUMINANCE8					= 0x8040
-,	GL2D_GL_INTERNAL_LUMINANCE12				= 0x8041
-,	GL2D_GL_INTERNAL_LUMINANCE16				= 0x8042
-,	GL2D_GL_INTERNAL_LUMINANCE4_ALPHA4			= 0x8043
-,	GL2D_GL_INTERNAL_LUMINANCE6_ALPHA2			= 0x8044
-,	GL2D_GL_INTERNAL_LUMINANCE8_ALPHA8			= 0x8045
-,	GL2D_GL_INTERNAL_LUMINANCE12_ALPHA4			= 0x8046
-,	GL2D_GL_INTERNAL_LUMINANCE12_ALPHA12		= 0x8047
-,	GL2D_GL_INTERNAL_LUMINANCE16_ALPHA16		= 0x8048
-,	GL2D_GL_INTERNAL_INTENSITY					= 0x8049
-,	GL2D_GL_INTERNAL_INTENSITY4					= 0x804A
-,	GL2D_GL_INTERNAL_INTENSITY8					= 0x804B
-,	GL2D_GL_INTERNAL_INTENSITY12				= 0x804C
-,	GL2D_GL_INTERNAL_INTENSITY16				= 0x804D
-,	GL2D_GL_INTERNAL_RGB4						= 0x804F
-,	GL2D_GL_INTERNAL_RGB5						= 0x8050
-,	GL2D_GL_INTERNAL_RGB8						= 0x8051
-,	GL2D_GL_INTERNAL_RGB10						= 0x8052
-,	GL2D_GL_INTERNAL_RGB12						= 0x8053
-,	GL2D_GL_INTERNAL_RGB16						= 0x8054
-,	GL2D_GL_INTERNAL_RGBA2						= 0x8055
-,	GL2D_GL_INTERNAL_RGBA4						= 0x8056
-,	GL2D_GL_INTERNAL_RGB5_A1					= 0x8057
-,	GL2D_GL_INTERNAL_RGBA8						= 0x8058
-,	GL2D_GL_INTERNAL_RGB10_A2					= 0x8059
-,	GL2D_GL_INTERNAL_RGBA12						= 0x805A
-,	GL2D_GL_INTERNAL_RGBA16						= 0x805B
-,	GL2D_GL_INTERNAL_DEPTH_COMPONENT16			= 0x81A5
-,	GL2D_GL_INTERNAL_DEPTH_COMPONENT24			= 0x81A6
-,	GL2D_GL_INTERNAL_DEPTH_COMPONENT32			= 0x81A7
-,	GL2D_GL_INTERNAL_R8							= 0x8229
-,	GL2D_GL_INTERNAL_RG8						= 0x822B
-,	GL2D_GL_INTERNAL_RG16						= 0x822C
-,	GL2D_GL_INTERNAL_R16F						= 0x822D
-,	GL2D_GL_INTERNAL_R32F						= 0x822E
-,	GL2D_GL_INTERNAL_RG16F						= 0x822F
-,	GL2D_GL_INTERNAL_RG32F						= 0x8230
-,	GL2D_GL_INTERNAL_COMPRESSED_RGBA_S3TC_DXT1	= 0x83F1
-,	GL2D_GL_INTERNAL_COMPRESSED_RGBA_S3TC_DXT3	= 0x83F2
-,	GL2D_GL_INTERNAL_COMPRESSED_RGBA_S3TC_DXT5	= 0x83F3
-,	GL2D_GL_INTERNAL_RGBA32F					= 0x8814
-,	GL2D_GL_INTERNAL_RGB32F						= 0x8815
-,	GL2D_GL_INTERNAL_RGBA16F					= 0x881A
-,	GL2D_GL_INTERNAL_RGB16F						= 0x881B
-,	GL2D_GL_INTERNAL_DEPTH24_STENCIL8			= 0x88F0
-,	GL2D_GL_INTERNAL_SRGB						= 0x8C40
-,	GL2D_GL_INTERNAL_SRGB8						= 0x8C41
-,	GL2D_GL_INTERNAL_SRGB_ALPHA					= 0x8C42
-,	GL2D_GL_INTERNAL_SRGB8_ALPHA8				= 0x8C43
-,	GL2D_GL_INTERNAL_SLUMINANCE_ALPHA			= 0x8C44
-,	GL2D_GL_INTERNAL_SLUMINANCE8_ALPHA8			= 0x8C45
-,	GL2D_GL_INTERNAL_SLUMINANCE					= 0x8C46
-,	GL2D_GL_INTERNAL_SLUMINANCE8				= 0x8C47
-,	GL2D_GL_INTERNAL_DEPTH_COMPONENT32F			= 0x8CAC
-,	GL2D_GL_INTERNAL_STENCIL_INDEX1				= 0x8D46
-,	GL2D_GL_INTERNAL_STENCIL_INDEX4				= 0x8D47
-,	GL2D_GL_INTERNAL_STENCIL_INDEX8				= 0x8D48
-,	GL2D_GL_INTERNAL_STENCIL_INDEX16			= 0x8D49
+typedef enum GL2D_GL_INTERNAL
+	: unsigned int
+{
+	GL2D_GL_INTERNAL_LUMINANCE					= 0x1909,
+	GL2D_GL_INTERNAL_ALPHA8						= 0x803C,
+	GL2D_GL_INTERNAL_ALPHA16					= 0x803E,
+	GL2D_GL_INTERNAL_LUMINANCE8					= 0x8040,
+	GL2D_GL_INTERNAL_LUMINANCE16				= 0x8042,
+	GL2D_GL_INTERNAL_LUMINANCE8_ALPHA8			= 0x8045,
+	GL2D_GL_INTERNAL_LUMINANCE16_ALPHA16		= 0x8048,
+	GL2D_GL_INTERNAL_INTENSITY8					= 0x804B,
+	GL2D_GL_INTERNAL_INTENSITY16				= 0x804D,
+	GL2D_GL_INTERNAL_RGB8						= 0x8051,
+	GL2D_GL_INTERNAL_RGB16						= 0x8054,
+	GL2D_GL_INTERNAL_RGBA8						= 0x8058,
+	GL2D_GL_INTERNAL_RGBA16						= 0x805B,
+	GL2D_GL_INTERNAL_DEPTH_COMPONENT16			= 0x81A5,
+	GL2D_GL_INTERNAL_DEPTH_COMPONENT24			= 0x81A6,
+	GL2D_GL_INTERNAL_DEPTH_COMPONENT32			= 0x81A7,
+	GL2D_GL_INTERNAL_R8							= 0x8229,
+	GL2D_GL_INTERNAL_RG8						= 0x822B,
+	GL2D_GL_INTERNAL_RG16						= 0x822C,
+	GL2D_GL_INTERNAL_R16F						= 0x822D,
+	GL2D_GL_INTERNAL_R32F						= 0x822E,
+	GL2D_GL_INTERNAL_RG16F						= 0x822F,
+	GL2D_GL_INTERNAL_RG32F						= 0x8230,
+	GL2D_GL_INTERNAL_RGBA32F					= 0x8814,
+	GL2D_GL_INTERNAL_RGB32F						= 0x8815,
+	GL2D_GL_INTERNAL_RGBA16F					= 0x881A,
+	GL2D_GL_INTERNAL_RGB16F						= 0x881B,
+	GL2D_GL_INTERNAL_DEPTH24_STENCIL8			= 0x88F0,
+	GL2D_GL_INTERNAL_DEPTH_COMPONENT32F			= 0x8CAC,
+	GL2D_GL_INTERNAL_STENCIL_INDEX1				= 0x8D46,
+	GL2D_GL_INTERNAL_STENCIL_INDEX4				= 0x8D47,
+	GL2D_GL_INTERNAL_STENCIL_INDEX8				= 0x8D48,
+	GL2D_GL_INTERNAL_STENCIL_INDEX16			= 0x8D49,
 }	GL2D_GL_INTERNAL;
 
 typedef enum GL2D_GL_TYPE : unsigned int
@@ -308,54 +268,5 @@ typedef enum GL2D_GL_TEXTURE_FILTER : unsigned int
 {	GL2D_GL_TEXTURE_FILTER_NEAREST	= 0x2600
 ,	GL2D_GL_TEXTURE_FILTER_LINEAR	= 0x2601
 }	GL2D_GL_TEXTURE_FILTER;
-
-/**@name FBO */
-//@{
-
-static std::function< void ( GLsizei n, GLuint* framebuffers  ) > glGenFramebuffers;
-static std::function< void ( GLsizei n, GLuint const * framebuffers  ) > glDeleteFramebuffers;
-static std::function< void ( uint32_t target, GL2D_GL_FRAMEBUFFER_MODE framebuffer  ) > glBindFramebuffer;
-static std::function< uint32_t ( uint32_t target  ) > glCheckFramebufferStatus;
-static std::function< void ( uint32_t target, uint32_t attachment, uint32_t texture, int level  ) > glFramebufferTexture;
-static std::function< void ( uint32_t target, uint32_t attachment, uint32_t textarget, uint32_t texture, int level  ) > glFramebufferTexture1D;
-static std::function< void ( uint32_t target, uint32_t attachment, uint32_t textarget, uint32_t texture, int level  ) > glFramebufferTexture2D;
-static std::function< void ( uint32_t target,uint32_t attachment, uint32_t texture,int level,int layer  ) > glFramebufferTextureLayer;
-#if DEF_HAS_VARIADIC_TEMPLATES
-static std::function< void ( uint32_t target, uint32_t attachment, uint32_t textarget, uint32_t texture, int level, int layer ) > glFramebufferTexture3D;
-static std::function< void ( int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, uint32_t mask, uint32_t filter ) > glBlitFramebuffer;
-#else
-static void (CALLBACK * glFramebufferTexture3D)( uint32_t target, uint32_t attachment, uint32_t textarget, uint32_t texture, int level, int layer );
-static void (CALLBACK * glBlitFramebuffer)( int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, uint32_t mask, uint32_t filter );
-#endif
-static std::function< void			( int n, uint32_t const * bufs ) > glDrawBuffers;
-
-//@}
-/**@name Texture */
-//@{
-
-static std::function < void ( uint32_t texture ) > glActiveTexture;
-
-//@}
-/**@name RBO */
-//@{
-
-static std::function< void ( uint32_t target, uint32_t attachmentPoint, uint32_t renderbufferTarget, uint32_t renderbufferId ) > glFramebufferRenderbuffer;
-static std::function< void ( GLsizei n, GLuint * ids ) > glGenRenderbuffers;
-static std::function< void ( GLsizei n, GLuint const * ids ) > glDeleteRenderbuffers;
-static std::function< void ( uint32_t target, uint32_t id ) > glBindRenderbuffer;
-static std::function< void ( uint32_t target, uint32_t internalFormat, int width, int height ) > glRenderbufferStorage;
-static std::function< void ( uint32_t target, int isamples, uint32_t internalFormat, int width, int height ) > glRenderbufferStorageMultisample;
-#if DEF_HAS_VARIADIC_TEMPLATES
-static std::function< void ( uint32_t target, int samples, int internalformat, int width, int height, uint8_t fixedsamplelocations ) > glTexImage2DMultisample;
-#else
-static void (CALLBACK * glTexImage2DMultisample)( uint32_t target, int samples, int internalformat, int width, int height, uint8_t fixedsamplelocations );
-#endif
-static std::function< void ( uint32_t target, uint32_t param, int* value ) > glGetRenderbufferParameteriv;
-
-namespace GL2D
-{
-	static void InitialiseOpenGL();
-	HRESULT glGetLastError( char const * const name );
-}
 
 #endif

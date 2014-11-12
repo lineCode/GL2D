@@ -295,7 +295,7 @@ namespace GL2D
 			return IsSupported(&renderTargetProperties);
 		}
 
-	private:
+	protected:
 		GL2D_SIZE_U m_size;
 	};
 }

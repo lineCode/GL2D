@@ -7,7 +7,7 @@ namespace GL2D
 {
 	template< typename Object, const GUID * Clsid >
 	class CUnknown
-        : public Object
+		: public Object
 	{
 	public:
 		GL2D_API CUnknown()
