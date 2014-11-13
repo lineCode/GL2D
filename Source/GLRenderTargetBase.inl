@@ -1,9 +1,77 @@
 #include "GLBitmapRenderTarget.h"
 #include "GLBitmap.h"
 #include "GLHelper.h"
+#include "GLContext.h"
 
 namespace GL2D
 {
+	static inline uint32_t GetBytesPerPixel( GL2D_PIXEL_FORMAT format )
+	{
+		switch ( format.internal )
+		{
+		case GL2D_GL_INTERNAL_LUMINANCE:
+			return 1;
+		case GL2D_GL_INTERNAL_ALPHA8:
+			return 1;
+		case GL2D_GL_INTERNAL_ALPHA16:
+			return 2;
+		case GL2D_GL_INTERNAL_LUMINANCE8:
+			return 1;
+		case GL2D_GL_INTERNAL_LUMINANCE16:
+			return 2;
+		case GL2D_GL_INTERNAL_LUMINANCE8_ALPHA8:
+			return 2;
+		case GL2D_GL_INTERNAL_LUMINANCE16_ALPHA16:
+			return 4;
+		case GL2D_GL_INTERNAL_INTENSITY8:
+			return 1;
+		case GL2D_GL_INTERNAL_INTENSITY16:
+			return 2;
+		case GL2D_GL_INTERNAL_RGB8:
+			return 3;
+		case GL2D_GL_INTERNAL_RGB16:
+			return 6;
+		case GL2D_GL_INTERNAL_RGBA8:
+			return 4;
+		case GL2D_GL_INTERNAL_RGBA16:
+			return 8;
+		case GL2D_GL_INTERNAL_DEPTH_COMPONENT16:
+			return 2;
+		case GL2D_GL_INTERNAL_DEPTH_COMPONENT24:
+			return 3;
+		case GL2D_GL_INTERNAL_DEPTH_COMPONENT32:
+			return 4;
+		case GL2D_GL_INTERNAL_R8:
+			return 1;
+		case GL2D_GL_INTERNAL_RG8:
+			return 2;
+		case GL2D_GL_INTERNAL_RG16:
+			return 4;
+		case GL2D_GL_INTERNAL_R32F:
+			return 4;
+		case GL2D_GL_INTERNAL_RG32F:
+			return 8;
+		case GL2D_GL_INTERNAL_RGBA32F:
+			return 16;
+		case GL2D_GL_INTERNAL_RGB32F:
+			return 12;
+		case GL2D_GL_INTERNAL_DEPTH24_STENCIL8:
+			return 4;
+		case GL2D_GL_INTERNAL_DEPTH_COMPONENT32F:
+			return 4;
+		case GL2D_GL_INTERNAL_STENCIL_INDEX1:
+			return 1;
+		case GL2D_GL_INTERNAL_STENCIL_INDEX4:
+			return 1;
+		case GL2D_GL_INTERNAL_STENCIL_INDEX8:
+			return 1;
+		case GL2D_GL_INTERNAL_STENCIL_INDEX16:
+			return 2;
+		}
+
+		return 0;
+	}
+
 	template< typename Object, typename Interface >
 	CRenderTargetBase< Object, Interface >::CRenderTargetBase()
 		: CResource< Object, Interface >()
@@ -14,6 +82,7 @@ namespace GL2D
 	template< typename Object, typename Interface >
 	CRenderTargetBase< Object, Interface >::~CRenderTargetBase()
 	{
+		CObject::Cleanup();
 	}
 
 	template< typename Object, typename Interface >
@@ -24,6 +93,11 @@ namespace GL2D
 		if ( bitmap )
 		{
 			CBitmap * bmp = reinterpret_cast< CBitmap * >( CBitmap::CreateInstance() );
+			const std::unique_ptr< CContext > & context = static_cast< Object * >( this )->GetContext();
+			static_cast< CObject * >( bmp )->Initialise(
+				std::bind( &CContext::GenTextures, context.get(), std::placeholders::_1, std::placeholders::_2 ),
+				std::bind( &CContext::DeleteTextures, context.get(), std::placeholders::_1, std::placeholders::_2 )
+				);
 			bmp->Initialise( size, srcData, pitch, *bitmapProperties );
 			*bitmap = bmp;
 			hr = S_OK;
@@ -218,6 +292,11 @@ namespace GL2D
 	template< typename Object, typename Interface >
 	STDMETHODIMP_( void ) CRenderTargetBase< Object, Interface >::DrawBitmap( IGL2DBitmap *bitmap, const GL2D_RECT_F *destinationRectangle, float opacity, GL2D_BITMAP_INTERPOLATION_MODE interpolationMode, const GL2D_RECT_F *sourceRectangle )
 	{
+		if ( bitmap )
+		{
+			CBitmap * bmp = reinterpret_cast< CBitmap * >( bitmap );
+			static_cast< Object * >( this )->GetContext()->DrawTexture( bmp->GetName(), *destinationRectangle, interpolationMode, *sourceRectangle );
+		}
 	}
 
 	template< typename Object, typename Interface >
@@ -333,7 +412,8 @@ namespace GL2D
 	template< typename Object, typename Interface >
 	STDMETHODIMP_( void ) CRenderTargetBase< Object, Interface >::BeginDraw()
 	{
-		OpenGL::BindFramebuffer( m_name, GL2D_GL_FRAMEBUFFER_MODE_DRAW );
+		static_cast< Object * >( this )->GetContext()->MakeCurrent();
+		static_cast< Object * >( this )->GetContext()->BindFramebuffer( GL2D_GL_FRAMEBUFFER_MODE_DRAW, m_name );
 		glDisable( GL_DEPTH_TEST );
 		glMatrixMode( GL_PROJECTION );
 		glLoadIdentity ();
@@ -344,7 +424,8 @@ namespace GL2D
 	template< typename Object, typename Interface >
 	STDMETHODIMP CRenderTargetBase< Object, Interface >::EndDraw( GL2D_TAG *tag1, GL2D_TAG *tag2 )
 	{
-		OpenGL::BindFramebuffer( 0, GL2D_GL_FRAMEBUFFER_MODE_DRAW );
+		static_cast< Object * >( this )->GetContext()->BindFramebuffer( GL2D_GL_FRAMEBUFFER_MODE_DRAW, 0 );
+		static_cast< Object * >( this )->GetContext()->EndCurrent();
 		return glGetLastError( "glBindFramebuffer" );
 	}
 
@@ -381,7 +462,7 @@ namespace GL2D
 	template< typename Object, typename Interface >
 	STDMETHODIMP_( uint32_t ) CRenderTargetBase< Object, Interface >::GetMaximumBitmapSize() const
 	{
-		return 4096 * 4096;
+		return static_cast< const Object * >( this )->GetContext()->GetInt( GL2D_GL_MAX_TEXTURE_BUFFER_SIZE );
 	}
 
 	template< typename Object, typename Interface >

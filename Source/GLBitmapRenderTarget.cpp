@@ -14,6 +14,14 @@ namespace GL2D
 
 	STDMETHODIMP CComBitmapRenderTarget::GetBitmap( IGL2DBitmap **bitmap )
 	{
-		return E_NOTIMPL;
+		HRESULT hr = E_POINTER;
+
+		if ( bitmap )
+		{
+			*bitmap = NULL;
+			hr = E_NOTIMPL;
+		}
+
+		return hr;
 	}
 }

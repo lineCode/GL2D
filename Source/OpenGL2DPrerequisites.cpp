@@ -10,7 +10,20 @@ namespace GL2D
 
 		if ( err )
 		{
-			std::cout << name << " failed" << std::endl;
+			err -= GL_INVALID_ENUM;
+			static std::string errors[] =
+			{
+				"INVALID_ENUM",
+				"INVALID_VALUE",
+				"INVALID_OPERATIONE",
+				"STACK_OVERFLOW",
+				"STACK_UNDERFLOW",
+				"OUT_OF_MEMORY",
+				"INVALID_FRAMEBUFFER_OPERATION",
+				"CONTEXT_LOST",
+			};
+
+			std::cout << name << " failed (" << errors[err] << ")" << std::endl;
 		}
 
 		return err ? E_FAIL : S_OK;

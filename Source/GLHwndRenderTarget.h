@@ -15,6 +15,11 @@ namespace GL2D
 		GL2D_API CComHwndRenderTarget();
 		GL2D_API virtual ~CComHwndRenderTarget();
 
+		inline const std::unique_ptr< CContext > & GetContext()const
+		{
+			return m_context;
+		}
+
 		STDMETHOD( Create )( const GL2D_RENDER_TARGET_PROPERTIES & renderTargetProperties, const GL2D_HWND_RENDER_TARGET_PROPERTIES & hwndRenderTargetProperties );
 		STDMETHOD_( void, Destroy )();
 		
@@ -22,7 +27,7 @@ namespace GL2D
 		GL2D_API STDMETHOD( Resize )( const GL2D_SIZE_U *pixelSize );
 		GL2D_API STDMETHOD_( HWND, GetHwnd )()const;
 
-	private:
+	protected:
 		std::unique_ptr< CContext > m_context;
 	};
 }

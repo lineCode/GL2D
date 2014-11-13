@@ -29,7 +29,7 @@ namespace GL2D
 		GL2D_API STDMETHOD( CreateDCRenderTarget )( const GL2D_RENDER_TARGET_PROPERTIES *renderTargetProperties, IGL2DDCRenderTarget **dcRenderTarget );
 
 	private:
-		Context m_context;
+		CContext m_context;
 	};
 }
 

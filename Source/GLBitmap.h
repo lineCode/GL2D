@@ -7,15 +7,15 @@
 namespace GL2D
 {
 	class CComBitmap
-		: public CObject
-		, public IGL2DBitmap
+		: public IGL2DBitmap
+		, public CObject
 	{
 	public:
 		GL2D_API CComBitmap();
 		GL2D_API virtual ~CComBitmap();
 
 		GL2D_API void Initialise( const GL2D_SIZE_U & size, const void * data, uint32_t pitch, const GL2D_BITMAP_PROPERTIES & props );
-		GL2D_API void Draw( const GL2D_RECT_F & rcDst, GL2D_GL_TEXTURE_FILTER mode, const GL2D_RECT_F & rcSrc );
+		GL2D_API void Draw( const GL2D_RECT_F & rcDst, GL2D_BITMAP_INTERPOLATION_MODE mode, const GL2D_RECT_F & rcSrc );
 		
 		GL2D_API STDMETHOD_( GL2D_SIZE_F, GetSize )()const;
 		GL2D_API STDMETHOD_( GL2D_SIZE_U, GetPixelSize )()const;

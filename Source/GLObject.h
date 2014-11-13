@@ -8,9 +8,9 @@
 namespace GL2D
 {
 	//! Fonction de création d'identificateur OpenGL.
-	typedef std::function< void ( GLsizei, GLuint * ) > Ctor;
+	typedef std::function< HRESULT ( GLsizei, GLuint * ) > Ctor;
 	//! Fonction de destruction d'identificateur OpenGL.
-	typedef std::function< void ( GLsizei, const GLuint * ) > Dtor;
+	typedef std::function< HRESULT ( GLsizei, const GLuint * ) > Dtor;
 	
 	/*!
 	\author 	Sylvain DOREMUS
@@ -43,21 +43,20 @@ namespace GL2D
 		@return
 			\p true si tout s'est bien passé.
 		*/
-		GL2D_API STDMETHOD( Initialise )( Ctor ctor, Dtor dtor )
+		GL2D_API STDMETHOD( Initialise )( Ctor const & ctor, Dtor const & dtor )
 		{
 			m_ctor = ctor;
 			m_dtor = dtor;
-			m_ctor( 1, &m_name );
-			assert( m_name != GL_INVALID_INDEX );
-			return m_name != GL_INVALID_INDEX ? S_OK : E_FAIL;
+			return m_ctor( 1, &m_name );
 		}
 
 		/** Détruit l'identificateur OpenGL.
 		*/
-		GL2D_API STDMETHOD_( void, Cleanup )()
+		GL2D_API STDMETHOD( Cleanup )()
 		{
-			m_dtor( 1, &m_name );
+			HRESULT hr = m_dtor( 1, &m_name );
 			m_name = GL_INVALID_INDEX;
+			return hr;
 		}
 
 		/** Récupère l'identificateur OpenGL.

@@ -41,6 +41,8 @@ namespace GL2D
 
 		if ( rectangleGeometry )
 		{
+			*rectangleGeometry = NULL;
+			hr = E_NOTIMPL;
 		}
 
 		return hr;
@@ -52,6 +54,8 @@ namespace GL2D
 
 		if ( roundedRectangleGeometry )
 		{
+			*roundedRectangleGeometry = NULL;
+			hr = E_NOTIMPL;
 		}
 
 		return hr;
@@ -63,6 +67,8 @@ namespace GL2D
 
 		if ( ellipseGeometry )
 		{
+			*ellipseGeometry = NULL;
+			hr = E_NOTIMPL;
 		}
 
 		return hr;
@@ -74,6 +80,8 @@ namespace GL2D
 
 		if ( geometryGroup )
 		{
+			*geometryGroup = NULL;
+			hr = E_NOTIMPL;
 		}
 
 		return hr;
@@ -85,6 +93,8 @@ namespace GL2D
 
 		if ( transformedGeometry )
 		{
+			*transformedGeometry = NULL;
+			hr = E_NOTIMPL;
 		}
 
 		return hr;
@@ -96,6 +106,8 @@ namespace GL2D
 
 		if ( pathGeometry )
 		{
+			*pathGeometry = NULL;
+			hr = E_NOTIMPL;
 		}
 
 		return hr;
@@ -107,6 +119,8 @@ namespace GL2D
 
 		if ( strokeStyle )
 		{
+			*strokeStyle = NULL;
+			hr = E_NOTIMPL;
 		}
 
 		return hr;
@@ -118,6 +132,8 @@ namespace GL2D
 
 		if ( drawingStateBlock )
 		{
+			*drawingStateBlock = NULL;
+			hr = E_NOTIMPL;
 		}
 
 		return hr;
@@ -146,7 +162,13 @@ namespace GL2D
 
 			if ( hr == S_OK )
 			{
-				hr = rt->Initialise( OpenGL::GenFramebuffers, OpenGL::DeleteFramebuffers );
+				rt->GetContext()->MakeCurrent();
+				hr = rt->Initialise(
+					std::bind( &CContext::GenFramebuffers, rt->GetContext().get(), std::placeholders::_1, std::placeholders::_2 ),
+					std::bind( &CContext::DeleteFramebuffers, rt->GetContext().get(), std::placeholders::_1, std::placeholders::_2 )
+					);
+				rt->GetContext()->EndCurrent();
+				*hwndRenderTarget = rt;
 			}
 		}
 
@@ -159,6 +181,8 @@ namespace GL2D
 
 		if ( renderTarget )
 		{
+			*renderTarget = NULL;
+			hr = E_NOTIMPL;
 		}
 
 		return hr;
@@ -170,6 +194,8 @@ namespace GL2D
 
 		if ( dcRenderTarget )
 		{
+			*dcRenderTarget = NULL;
+			hr = E_NOTIMPL;
 		}
 
 		return hr;

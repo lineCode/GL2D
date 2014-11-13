@@ -50,7 +50,6 @@ namespace GL2D
 
 	class CContext;
 
-	void InitialiseOpenGL();
 	HRESULT glGetLastError( char const * const name );
 }
 

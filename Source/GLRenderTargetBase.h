@@ -5,6 +5,8 @@
 #include "GLBaseTypes.h"
 #include "GLObject.h"
 
+#include <memory>
+
 #if defined( DrawText )
 #	undef DrawText
 #endif

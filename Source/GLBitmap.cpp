@@ -12,6 +12,7 @@ namespace GL2D
 
 	CComBitmap::~CComBitmap()
 	{
+		CObject::Cleanup();
 	}
 	
 	void CComBitmap::Initialise( const GL2D_SIZE_U & size, const void * data, uint32_t pitch, const GL2D_BITMAP_PROPERTIES & props )
@@ -23,12 +24,8 @@ namespace GL2D
 		glBindTexture( GL_TEXTURE_2D, 0 );
 	}
 	
-	void CComBitmap::Draw( const GL2D_RECT_F & rcDst, GL2D_GL_TEXTURE_FILTER mode, const GL2D_RECT_F & rcSrc )
+	void CComBitmap::Draw( const GL2D_RECT_F & rcDst, GL2D_BITMAP_INTERPOLATION_MODE mode, const GL2D_RECT_F & rcSrc )
 	{
-		glBindTexture( GL_TEXTURE_2D, m_name );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, mode );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, mode );
-		glBindTexture( GL_TEXTURE_2D, 0 );
 	}
 
 	STDMETHODIMP_( GL2D_SIZE_F ) CComBitmap::GetSize()const
@@ -70,7 +67,7 @@ namespace GL2D
 	STDMETHODIMP CComBitmap::CopyFromMemory( const GL2D_RECT_U * dstRect, const void * srcData, uint32_t pitch )
 	{
 		glBindTexture( GL_TEXTURE_2D, m_name );
-        glTexSubImage2D( GL_TEXTURE_2D, 0, dstRect->left, dstRect->top, dstRect->right - dstRect->left, dstRect->bottom - dstRect->top, m_format.format, m_format.type, srcData );
+		glTexSubImage2D( GL_TEXTURE_2D, 0, dstRect->left, dstRect->top, dstRect->right - dstRect->left, dstRect->bottom - dstRect->top, m_format.format, m_format.type, srcData );
 		glBindTexture( GL_TEXTURE_2D, 0 );
 		return E_NOTIMPL;
 	}

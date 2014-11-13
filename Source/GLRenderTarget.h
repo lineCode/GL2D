@@ -6,11 +6,19 @@
 namespace GL2D
 {
 	class CComRenderTarget
-        : public IGL2DRenderTarget
+		: public IGL2DRenderTarget
 	{
 	public:
 		GL2D_API CComRenderTarget();
 		GL2D_API virtual ~CComRenderTarget();
+
+		inline const std::unique_ptr< CContext > & GetContext()const
+		{
+			return m_context;
+		}
+
+	protected:
+		std::unique_ptr< CContext > m_context;
 	};
 }
 
